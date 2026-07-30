@@ -45,6 +45,7 @@ end, { desc = "Toggle/Reveal hidden terminal" })
 map('t', '<Esc>', [[<C-\><C-n>:hide<CR>]], { desc = "Hide terminal window" })
 
 map("n", "H", ":noh<cr>")
+map("n", "<leader>C", ":bd!<cr>")
 
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
