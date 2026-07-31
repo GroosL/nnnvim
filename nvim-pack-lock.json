@@ -29,7 +29,7 @@
       "src": "https://github.com/nvim-mini/mini.completion"
     },
     "mini.diff": {
-      "rev": "b3d8507929f8df54ab9b08c77564c1afd7d62110",
+      "rev": "626b8a5b93874c4d05ca25aedec56cfff0b378fb",
       "src": "https://github.com/nvim-mini/mini.diff"
     },
     "mini.indentscope": {
@@ -37,7 +37,7 @@
       "src": "https://github.com/nvim-mini/mini.indentscope"
     },
     "mini.pairs": {
-      "rev": "30cf2f01c4aaa2033db67376b9924fa2442c05d6",
+      "rev": "b1c5a726921b7a8c9321e9a7a208aa0571de5810",
       "src": "https://github.com/nvim-mini/mini.pairs"
     },
     "mini.pick": {
@@ -57,7 +57,7 @@
       "src": "https://github.com/nvim-mini/mini.tabline"
     },
     "nvim-lspconfig": {
-      "rev": "d5b6e3db4c17b0146f63a2fc47e2027a754b2cb1",
+      "rev": "9ae2b3b63b924b1329724dae76e9d2c5c40b389c",
       "src": "https://github.com/neovim/nvim-lspconfig"
     }
   }

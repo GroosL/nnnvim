@@ -13,7 +13,35 @@ vim.pack.add({
 	'https://github.com/nvim-mini/mini.snippets',
 })
 
-require('mini.completion').setup()
+require('mini.completion').setup({
+	lsp_completion = {
+		process_items = function(items)
+			for _, item in ipairs(items) do
+				if type(item.labelDetails) ~= 'table' then
+					item.labelDetails = nil
+				else
+					if type(item.labelDetails.detail) ~= 'string' then
+						item.labelDetails.detail = nil
+					end
+					if type(item.labelDetails.description) ~= 'string' then
+						item.labelDetails.description = nil
+					end
+				end
+				if type(item.detail) ~= 'string' then
+					item.detail = nil
+				end
+				if type(item.documentation) == 'table' then
+					if type(item.documentation.value) ~= 'string' then
+						item.documentation.value = nil
+					end
+				elseif type(item.documentation) ~= 'string' then
+					item.documentation = nil
+				end
+			end
+			return items
+		end,
+	},
+})
 require('mini.snippets').setup({
 	snippets = {
 		require('mini.snippets').gen_loader.from_lang(),
@@ -34,9 +62,13 @@ local servers = {
   "clangd",
   "nixd",
   "jedi_language_server",
-  "gopls"
+  "gopls",
+	"glsl_analyzer"
 }
 vim.lsp.config('clangd', {
   cmd = {"clangd", "--background-index", "--clang-tidy", "--header-insertion=never"}
+})
+vim.lsp.config('glsl_analyzer', {
+	single_file_support = true,
 })
 vim.lsp.enable(servers)
