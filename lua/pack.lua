@@ -63,7 +63,8 @@ local servers = {
   "nixd",
   "jedi_language_server",
   "gopls",
-	"glsl_analyzer"
+	"glsl_analyzer",
+  "asm_lsp"
 }
 vim.lsp.config('clangd', {
   cmd = {"clangd", "--background-index", "--clang-tidy", "--header-insertion=never"}
