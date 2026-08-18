@@ -38,7 +38,7 @@ map('n', '<leader>t', function()
     vim.api.nvim_win_set_buf(0, term_buf)
     vim.cmd("startinsert")
   else
-    vim.cmd("15split | term zsh")
+    vim.cmd("15split | term exec $(echo $SHELL)")
     vim.cmd("startinsert")
   end
 end, { desc = "Toggle/Reveal hidden terminal" })

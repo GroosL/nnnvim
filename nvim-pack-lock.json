@@ -57,7 +57,7 @@
       "src": "https://github.com/nvim-mini/mini.tabline"
     },
     "nvim-lspconfig": {
-      "rev": "51dbf5359da86721662c87ca10eb73add973737b",
+      "rev": "0662886bc0a4e0c199dec65cee23a4319dd79f55",
       "src": "https://github.com/neovim/nvim-lspconfig"
     }
   }
