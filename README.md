@@ -36,7 +36,7 @@ This config uses:
 2. Clone this repo into your Neovim config directory:
 
 ```bash
-git clone https://github.com/your-name/nnnvim.git ~/.config/nvim
+git clone https://github.com/GroosL/nnnvim.git ~/.config/nvim
 ```
 
 3. Launch Neovim:
