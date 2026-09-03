@@ -9,9 +9,64 @@ map("n", "zc", ":q!<cr>")
 
 map("n", "<leader>re", ":restart<cr>")
 
-vim.keymap.set('n', '<leader>e', function()
-  require('mini.pick').builtin.files(nil, { opts = { tool = 'search' } })
-end, { desc = "Pick files recursively using Ripgrep" })
+local function live_search()
+  local MiniPick = require('mini.pick')
+  local cwd = vim.fn.getcwd()
+  local set_items_opts = { do_match = false }
+  local sys = { kill = function() end }
+
+  local match = function(_, _, query)
+    sys:kill()
+    local prompt = table.concat(query)
+    set_items_opts.querytick = MiniPick.get_querytick()
+
+    local command = {
+      'search',
+      '.',
+      prompt,
+      '-s',
+      '-r',
+      '-i', '.git',
+      '-i', 'node_modules',
+      '-i', 'target',
+    }
+
+    sys = MiniPick.set_picker_items_from_cli(command, {
+      set_items_opts = set_items_opts,
+      spawn_opts = { cwd = cwd },
+      postprocess = function(lines)
+        local res = {}
+        for _, line in ipairs(lines) do
+          if line ~= '' then
+            table.insert(res, (line:gsub('^%./', '')))
+          end
+        end
+        return res
+      end,
+    })
+  end
+
+  MiniPick.start({
+    source = {
+      name = 'Search (GESearch)',
+      cwd = cwd,
+      items = {},
+      match = match,
+      show = function(buf_id, items, query)
+        MiniPick.default_show(buf_id, items, query, { show_icons = true })
+      end,
+    },
+  })
+end
+
+vim.schedule(function()
+  local ok, MiniPick = pcall(require, 'mini.pick')
+  if ok and MiniPick.registry then
+    MiniPick.registry.search = live_search
+  end
+end)
+
+map('n', '<leader>e', live_search, { desc = "Live search files with GESearch" })
 map("n", "<leader>E", ":Ex<cr>")
 
 map("n", "rn", ":set relativenumber!<cr>")
