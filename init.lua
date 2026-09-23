@@ -4,4 +4,4 @@ require("options")
 require("commands")
 require("pack")
 
-vim.cmd.colorscheme("dracula")
+vim.cmd.colorscheme("eldritch")

@@ -1,5 +1,7 @@
 vim.pack.add({
   'https://github.com/mofiqul/dracula.nvim',
+  'https://github.com/eldritch-theme/eldritch.nvim',
+
   'https://github.com/nvim-mini/mini.pick',
   'https://github.com/nvim-mini/mini.indentscope',
   'https://github.com/neovim/nvim-lspconfig',
